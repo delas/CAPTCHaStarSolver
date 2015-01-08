@@ -1,7 +1,21 @@
+/* Cache with the values computed for the evaluation */
+var evaluationCache = {};
+
 /**
- * This function computes the score of the current configuration.
+ * This function computes the score of the current configuration of the canvas.
+ * The overall computation time is extremely influenced by this function and, in
+ * particular by the value of the NEIGHBORHOOD_CELLS variable.
  */
-function evaluate(canvas) {
+function evaluate(canvas, x, y) {
+	/* Draw the actual configuration */
+	disegna(x, y);
+	
+	/* Check the cache for the value */
+	var key = x + "," + y;
+	if (evaluationCache.hasOwnProperty(key)) {
+		return evaluationCache[key];
+	}
+		
 	/* Neighborhood cells */
 	var NEIGHBORHOOD_CELLS = 1;
 	/* Minimum white cells in neighborhood threshold */
@@ -26,5 +40,7 @@ function evaluate(canvas) {
 			}
 		}
 	}
+	evaluationCache[key] = score;
 	return score;
 }
+
