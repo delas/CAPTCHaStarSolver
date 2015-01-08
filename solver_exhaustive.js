@@ -8,7 +8,7 @@ function solveExhaustive() {
 	console.log("Starting...");
 	
 	/* Step to use for the matrix check */
-	var STEP_SIZE = 10;
+	var STEP_SIZE = 5;
 	
 	/* Get the canvas stuff */
 	var canvas = document.getElementById("captcha");
