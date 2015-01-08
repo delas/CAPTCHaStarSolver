@@ -10,7 +10,7 @@ function solveHillClimbing() {
 	console.log("Starting...");
 	
 	/* Number of random restarts */
-	var RANDOM_RESTARTS = 2;
+	var RANDOM_RESTARTS = 10;
 	/* Step for the other directions */
 	var STEP_SIZE = 2;
 	
