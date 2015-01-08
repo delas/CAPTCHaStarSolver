@@ -1,6 +1,6 @@
 # CAPTCHaStarSolver
 
-This project aims at defining a solver for the [CAPTCHaStar](http://starcaptcha.math.unipd.it/):
+This project aims at defining (still unsuccessfully) a solver for the [CAPTCHaStar](http://starcaptcha.math.unipd.it/):
 
 > Solve a CAPTCHaStar is simple!
 > You just need to move the mouse over the black square, and click when those little white dots forms a recognizable shape.
