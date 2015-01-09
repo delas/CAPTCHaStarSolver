@@ -28,18 +28,15 @@ function solveExhaustiveIncremental() {
 	/* Iteration for all the tiles sizes */
 	for (i_step = 0; i_step < STEP_SIZES.length; i_step++) {
 	
-		/* Give user feedback */
-		document.getElementById("result").innerHTML += " " + (i_step + 1) + "/" + STEP_SIZES.length;
-	
 		var STEP_SIZE = STEP_SIZES[i_step];
 		console.log("=== USING STEP_SIZE = " + STEP_SIZE + " ===");
 		best = checkIncremental(canvas, best, fromX, toX, fromY, toY, STEP_SIZE);
 		console.log("The best configuration for this STEP_SIZE seems (" + best.x + ", " + best.y + "), score: " + best.score);
 
-		fromX = Math.max(0, best.x - (STEP_SIZE / 2));
-		toX = Math.min(canvas.width, best.x + (STEP_SIZE / 2) );
-		fromY = Math.max(0, best.y - (STEP_SIZE / 2));
-		toY = Math.min(canvas.height, best.y + (STEP_SIZE / 2));
+		fromX = Math.round(Math.max(0, best.x - (STEP_SIZE / 2)));
+		toX = Math.round(Math.min(canvas.width, best.x + (STEP_SIZE / 2)));
+		fromY = Math.round(Math.max(0, best.y - (STEP_SIZE / 2)));
+		toY = Math.round(Math.min(canvas.height, best.y + (STEP_SIZE / 2)));
 	}
 	
 	console.log("Done!");
@@ -47,12 +44,15 @@ function solveExhaustiveIncremental() {
 	/* Draw the best configuration */
 	disegna(best.x, best.y);
 	console.log("The best configuration seems (" + best.x + ", " + best.y + "), score: " + best.score);
+	
+	/* Click the calculated position */
+	//clickOnCanvasPosition(canvas, best.x, best.y);
 }
 
 function checkIncremental(canvas, best, fromX, toX, fromY, toY, STEP_SIZE) {
 	/* Iterate through each possible configuration */
-	for (canvas_i = fromX; canvas_i <= toX; canvas_i += STEP_SIZE) {
-		for (canvas_j = fromY; canvas_j <= toY; canvas_j += STEP_SIZE) {
+	for (canvas_i = fromX; canvas_i < toX; canvas_i += STEP_SIZE) {
+		for (canvas_j = fromY; canvas_j < toY; canvas_j += STEP_SIZE) {
 			/* Compute the score for the current configuration */
 			var score = evaluate(canvas, canvas_i, canvas_j);
 			console.log("Mouse at (" + canvas_i + ", " + canvas_j + "), score " + score);
@@ -68,12 +68,11 @@ function checkIncremental(canvas, best, fromX, toX, fromY, toY, STEP_SIZE) {
 	return best;
 }
 
-document.getElementById("result").innerHTML = "Trying to solve...";
 alert("The tester requires about 90 seconds. Once clicked OK, just wait for the solution (or check the console for progress)!");
 
 var start = new Date().getTime();
 solveExhaustiveIncremental();
 var end = new Date().getTime();
 
-document.getElementById("result").innerHTML = "The candidate solution is painted! (took " + ((end - start)/1000) + "s)";
+alert("The candidate solution is painted! (took " + ((end - start)/1000) + "s)");
 
