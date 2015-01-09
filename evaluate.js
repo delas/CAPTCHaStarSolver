@@ -5,6 +5,11 @@ var evaluationCache = {};
  * This function computes the score of the current configuration of the canvas.
  * The overall computation time is extremely influenced by this function and, in
  * particular by the value of the NEIGHBORHOOD_CELLS variable.
+ *
+ * @param canvas the canvas to use for the evaluation
+ * @param x the x coordinate
+ * @param y the y coordinate
+ * @return the score at the provided coordinates
  */
 function evaluate(canvas, x, y) {
 	/* Draw the actual configuration */
@@ -23,8 +28,8 @@ function evaluate(canvas, x, y) {
 	
 	var ctx = canvas.getContext("2d");
 	var score = 0;
-	for (i = 0; i < canvas.width; i += (NEIGHBORHOOD_CELLS + 1)) {
-		for (j = 0; j < canvas.height; j += (NEIGHBORHOOD_CELLS + 1)) {
+	for (i = 0; i <= canvas.width; i += (NEIGHBORHOOD_CELLS + 1)) {
+		for (j = 0; j <= canvas.height; j += (NEIGHBORHOOD_CELLS + 1)) {
 			var totWhite = 0;
 			/* Compute the score for the neighborhood */
 			for (h = -NEIGHBORHOOD_CELLS; h <= NEIGHBORHOOD_CELLS; h++) {
