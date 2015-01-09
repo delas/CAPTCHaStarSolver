@@ -1,4 +1,4 @@
-# CAPTCHaStarTester
+# CAPTCHaStar Tester
 
 This project aims at testing the [CAPTCHaStar](http://starcaptcha.math.unipd.it/):
 
