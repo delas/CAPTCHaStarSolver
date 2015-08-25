@@ -7,7 +7,7 @@
  * @param y the y coordinate
  */
 function clickOnCanvasPosition(canvas, x, y) {
-	var evt = document.createEvent("HTMLEvents");
+	var evt = document.createEvent("MouseEvents");
 	evt.initEvent("click", true, true);
 	evt.clientX = x;
 	evt.clientY = y;

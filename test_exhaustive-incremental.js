@@ -44,6 +44,7 @@ function solveExhaustiveIncremental() {
 	/* Draw the best configuration */
 	disegna(best.x, best.y);
 	console.log("The best configuration seems (" + best.x + ", " + best.y + "), score: " + best.score);
+	clickOnCanvasPosition(document.getElementById("captcha"), best.x, best.y);
 	
 	/* Click the calculated position */
 	//clickOnCanvasPosition(canvas, best.x, best.y);
